@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 using Transitions;
@@ -18,18 +19,18 @@ namespace Stopwatch
 
 			updater.Tick += (sender, e) =>
 			{
-				hours = (int)stopwatch.Elapsed.TotalHours;
-				minutes = (int)stopwatch.Elapsed.TotalMinutes;
-				seconds = (int)stopwatch.Elapsed.TotalSeconds;
+				hours = stopwatch.Elapsed.Hours;
+				minutes = stopwatch.Elapsed.Minutes;
+				seconds = stopwatch.Elapsed.Seconds;
 
-				if (hours >= 25)
+				if (hours > 24 && (minutes == 60 && seconds == 60))
 				{
 					MessageBox.Show("Time limit exceeded. Please reset Stopwatch to continue.", "Time Limit Exceeded", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 
-				lblHours.Text = hours.ToString("00");
-				lblMinutes.Text = minutes.ToString("00");
-				lblSeconds.Text = seconds.ToString("00");
+				lblHours.Text = string.Format("{0:D2}", hours);
+				lblMinutes.Text = string.Format("{0:D2}", minutes);
+				lblSeconds.Text = string.Format("{0:D2}", seconds);
 
 				Application.DoEvents();
 			};
