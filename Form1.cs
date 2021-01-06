@@ -111,12 +111,14 @@ namespace Stopwatch
 			hours = 0;
 			minutes = 0;
 			seconds = 0;
+			milliseconds = 0;
 
 			stopwatch.Reset();
 
 			lblHours.Text = hours.ToString("00");
 			lblMinutes.Text = minutes.ToString("00");
 			lblSeconds.Text = seconds.ToString("00");
+			lblMilliseconds.Text = milliseconds.ToString("000");
 		}
 
 		private bool millisecondsShowing = true;
